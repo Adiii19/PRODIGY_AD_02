@@ -43,8 +43,8 @@ class _TaskitemState extends State<Taskitem> {
                 child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 7),
                           child: Container(
-                            width: 400,
-                            height: 135,
+                            width: MediaQuery.of(context).size.width*0.8,
+                            height: MediaQuery.of(context).size.height*0.2,
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
@@ -136,7 +136,7 @@ class _TaskitemState extends State<Taskitem> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          left: 20, right: 5),
+                                          left: 10, right: 5),
                                       child: IconButton(
                                         onPressed: (
                                           

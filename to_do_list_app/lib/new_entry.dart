@@ -283,7 +283,7 @@ class _NewEntryState extends State<NewEntry> {
                 taskController.hour?.value = selectedTime!.hour;
                 taskController.min?.value = selectedTime!.minute;
                 taskController.hourcheck?.value = selectedTime!.hour;
-                taskController.category.value = enteredcategory as String;
+                taskController.category.value = enteredcategory.name;
 
                 setState(() {
   taskController.task_adder();

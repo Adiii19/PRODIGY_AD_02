@@ -23,7 +23,7 @@ class TaskController extends GetxController {
   RxInt? min = 4.obs;
   RxInt? hourcheck = 4.obs;
   RxString? id = ''.obs;
-  Rx<String?> category = Category.Work.toString().obs;
+  RxString category = Category.Work.name.obs;
 
   void task_adder() async {
     if (AddButton.value == true) {

@@ -24,13 +24,13 @@ class _MainScreenState extends State<MainScreen> {
   void showmodealsheet() {
     showModalBottomSheet(
       sheetAnimationStyle: AnimationStyle(
-          curve: Curves.bounceInOut, duration: Durations.medium2),
+          curve: Curves.bounceInOut, duration: Durations.long4),
       context: context,
       useSafeArea: true,
-      constraints: BoxConstraints.expand(),
+      constraints: const BoxConstraints.expand(),
       isScrollControlled: true,
       elevation: 10,
-      backgroundColor: Color.fromARGB(255, 245, 219, 219),
+      backgroundColor: const Color.fromARGB(255, 245, 219, 219),
       builder: (BuildContext context) => NewEntry(),
     );
   }
@@ -44,6 +44,7 @@ class _MainScreenState extends State<MainScreen> {
 
   Future<void> loaditems()async{
 
+          task_controller.tasklist.clear();
      final url=Uri.https(
       'to-do-list-29552-default-rtdb.firebaseio.com', '/Tasklist.json');
     final response = await http.get(url);
@@ -105,11 +106,11 @@ class _MainScreenState extends State<MainScreen> {
         child: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width * 1,
-            decoration: BoxDecoration(color: Color.fromARGB(255, 245, 219, 219)),
+            decoration: const BoxDecoration(color: Color.fromARGB(255, 245, 219, 219)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 70,
                 ),
                 Row(
@@ -119,7 +120,7 @@ class _MainScreenState extends State<MainScreen> {
                         onPressed: () {
                           showmodealsheet();
                         },
-                        icon: Icon(Icons.add)),
+                        icon: const Icon(Icons.add)),
                   ],
                 ),
                 Padding(
@@ -127,7 +128,7 @@ class _MainScreenState extends State<MainScreen> {
                   child: Text(
                     "Have a Good Day ,",
                     style: GoogleFonts.urbanist(
-                        color: Color.fromARGB(255, 6, 53, 20),
+                        color: const Color.fromARGB(255, 6, 53, 20),
                         fontSize: 43,
                         fontWeight: FontWeight.w300),
                   ),
@@ -138,7 +139,7 @@ class _MainScreenState extends State<MainScreen> {
                     () => Text(
                       "${initialController.name.value} 👋!",
                       style: GoogleFonts.urbanist(
-                          color: Color.fromARGB(255, 6, 53, 20),
+                          color: const Color.fromARGB(255, 6, 53, 20),
                           fontSize: 43,
                           fontWeight: FontWeight.w300),
                     ),
@@ -153,18 +154,18 @@ class _MainScreenState extends State<MainScreen> {
                         border: Border.all(
                             color: const Color.fromARGB(255, 255, 255, 255),
                             width: 2),
-                        gradient: LinearGradient(colors: [
+                        gradient: const LinearGradient(colors: [
                           Color.fromARGB(31, 118, 201, 218),
                           Colors.white
                         ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                        borderRadius: BorderRadius.all(
+                        borderRadius: const BorderRadius.all(
                           Radius.circular(20),
                         )),
                     child: Container(
                       height: 200,
                       width: MediaQuery.of(context).size.width*5,
                       decoration: BoxDecoration(
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                                 blurRadius: 7,
                                 spreadRadius: 1,
@@ -173,7 +174,7 @@ class _MainScreenState extends State<MainScreen> {
                                 offset: Offset(7, 2))
                           ],
                           border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.all(
+                          borderRadius: const BorderRadius.all(
                             Radius.circular(25),
                           )),
                       child: Column(
@@ -195,7 +196,7 @@ class _MainScreenState extends State<MainScreen> {
                               child: GridView.count(
                                 crossAxisCount: 2,
                                 scrollDirection: Axis.horizontal,
-                                padding: EdgeInsets.only(left: 4, bottom: 5),
+                                padding: const EdgeInsets.only(left: 4, bottom: 5),
                                 childAspectRatio: 0.67,
                                 children: [
                                   InkWell(
@@ -205,10 +206,10 @@ class _MainScreenState extends State<MainScreen> {
                                     child: Card(
                                       
                                       elevation: 15,
-                                      margin: EdgeInsets.all(10),
+                                      margin: const EdgeInsets.all(10),
                                       child: Stack(
                                         children: [
-                                          Image(
+                                          const Image(
                                             image:
                                                 AssetImage('assets/images/work.jpg'),
                                             height: 110,
@@ -217,7 +218,7 @@ class _MainScreenState extends State<MainScreen> {
                                           ),
                                           Container(
                                             width: 200,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                                 color: Color.fromARGB(74, 0, 0, 0),
                                                 borderRadius: BorderRadius.all(
                                                     Radius.circular(1))),
@@ -245,10 +246,10 @@ class _MainScreenState extends State<MainScreen> {
                                     },
                                     child: Card(
                                       elevation: 15,
-                                      margin: EdgeInsets.all(10),
+                                      margin: const EdgeInsets.all(10),
                                       child: Stack(
                                         children: [
-                                          Image(
+                                          const Image(
                                             image:
                                                 AssetImage('assets/images/fam.jpg'),
                                             height: 110,
@@ -257,7 +258,7 @@ class _MainScreenState extends State<MainScreen> {
                                           ),
                                           Container(
                                             width: 193,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                                 color: Color.fromARGB(74, 0, 0, 0),
                                                 borderRadius: BorderRadius.all(
                                                     Radius.circular(1))),
@@ -284,11 +285,11 @@ class _MainScreenState extends State<MainScreen> {
                                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=> CategoryScreen(cat_name: 'Leisure')));
                                     },
                                     child: Card(
-                                      margin: EdgeInsets.all(10),
+                                      margin: const EdgeInsets.all(10),
                                       elevation: 10,
                                       child: Stack(
                                         children: [
-                                          Image(
+                                          const Image(
                                             image: AssetImage(
                                                 'assets/images/leisure.jpg'),
                                             height: 110,
@@ -297,7 +298,7 @@ class _MainScreenState extends State<MainScreen> {
                                           ),
                                           Container(
                                             width: 190,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                                 color: Color.fromARGB(74, 0, 0, 0),
                                                 borderRadius: BorderRadius.all(
                                                     Radius.circular(1))),
@@ -324,11 +325,11 @@ class _MainScreenState extends State<MainScreen> {
                                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=> CategoryScreen(cat_name: 'Health')));
                                     },
                                     child: Card(
-                                      margin: EdgeInsets.all(10),
+                                      margin: const EdgeInsets.all(10),
                                       elevation: 10,
                                       child: Stack(
                                         children: [
-                                          Image(
+                                          const Image(
                                             image: AssetImage(
                                                 'assets/images/health.jpg'),
                                             height: 110,
@@ -337,7 +338,7 @@ class _MainScreenState extends State<MainScreen> {
                                           ),
                                           Container(
                                             width: 190,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                                 color: Color.fromARGB(74, 0, 0, 0),
                                                 borderRadius: BorderRadius.all(
                                                     Radius.circular(1))),
@@ -369,16 +370,16 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 15, left: 6, right: 6),
+                  padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
                   child: Container(
-                    height: MediaQuery.of(context).size.height * 1,
-                    width: MediaQuery.of(context).size.width * 0.96,
+                    height: MediaQuery.of(context).size.height * 0.55,
+                    width: MediaQuery.of(context).size.width * 0.97,
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [
+                        gradient: const LinearGradient(colors: [
                           Color.fromARGB(255, 235, 235, 209),
                           Colors.white
                         ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                               blurRadius: 7,
                               spreadRadius: 1,
@@ -387,7 +388,7 @@ class _MainScreenState extends State<MainScreen> {
                               offset: Offset(7, 2))
                         ],
                         border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.all(
+                        borderRadius: const BorderRadius.all(
                           Radius.circular(25),
                         )),
                     child: Column(

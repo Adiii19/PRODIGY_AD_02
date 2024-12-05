@@ -13,13 +13,6 @@ class IntialScreen extends StatefulWidget {
 class _IntialScreenState extends State<IntialScreen> {
 
 
-
-  
-   
-
- 
-
-
   @override
   Widget build(BuildContext context) {
     final TextEditingController _nameController = TextEditingController();

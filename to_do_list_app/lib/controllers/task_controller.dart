@@ -23,7 +23,7 @@ class TaskController extends GetxController {
   RxInt? min = 4.obs;
   RxInt? hourcheck = 4.obs;
   RxString? id = ''.obs;
-  Rx<Category?> category = Category.Work.obs;
+  Rx<String?> category = Category.Work.toString().obs;
 
   void task_adder() async {
     if (AddButton.value == true) {
@@ -38,11 +38,14 @@ class TaskController extends GetxController {
             'hour': hour?.value,
             'min': min?.value,
             'hourcheck': hourcheck?.value,
-            'category': category.value.toString().split('.').last
+            'category': category.value.toString().split('.').last,
+            
+            
           }));
-
-      final data = json.decode(response.body) as Map<String, dynamic>;
-      final String id = data['name'];
+         print(response.body);
+      final  data = json.decode(response.body)  as Map<String, dynamic>;
+     
+      final String id=data['name'];
 
       tasklist.add(Task(
         taskname: taskname.value,
@@ -51,12 +54,13 @@ class TaskController extends GetxController {
         hour: hour?.value,
         min: min?.value,
         hourcheck: hourcheck?.value,
-        id: id,
-        category: category.value.toString(),
+        id:id ,
+        category: category.value.toString().split('.').last,
       ));
       update();
       print(tasklist);
-
+       update(); // Explicitly call update to refresh the state
+    AddButton.value = false;
     }
   }
 
@@ -75,7 +79,7 @@ class TaskController extends GetxController {
           'min': initialtask.min,
           'hourcheck': initialtask.hour,
           'id': initialtask?.id ?? '',
-          'category':initialtask.category.toString().split('.').last
+          'category':initialtask.category.toString().split('.').last,
         }),
       );
 
@@ -95,7 +99,7 @@ class TaskController extends GetxController {
             min: initialtask.min,
             id: initialtask.id,
             hourcheck: initialtask.hour,
-            category: initialtask.category.toString());
+            category: initialtask.category.toString().split('.').last,);
       }
       
     }

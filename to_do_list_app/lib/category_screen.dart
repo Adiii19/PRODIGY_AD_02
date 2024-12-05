@@ -5,14 +5,28 @@ import 'package:to_do_list_app/controllers/task_controller.dart';
 import 'package:to_do_list_app/models/model.dart';
 import 'package:to_do_list_app/widgets/taskItem.dart';
 
-class CategoryScreen extends StatelessWidget {
+class CategoryScreen extends StatefulWidget {
   CategoryScreen({required this.cat_name, super.key});
 
   final String cat_name;
 
   @override
+  State<CategoryScreen> createState() => _CategoryScreenState();
+}
+
+class _CategoryScreenState extends State<CategoryScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    
+  }
+  @override
   Widget build(BuildContext context) {
     final TaskController task_controller = Get.put(TaskController());
+    
+    
 
     // TODO: implement build
     return Scaffold(
@@ -25,7 +39,7 @@ class CategoryScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 50),
                 child: Text(
-                  '${cat_name}',
+                  '${widget.cat_name}',
                   style: GoogleFonts.urbanist(
                       color: Color.fromARGB(255, 6, 53, 20),
                       fontSize: 43,
@@ -74,7 +88,7 @@ class CategoryScreen extends StatelessWidget {
                         child: Obx(() {
                           final filtertask =
                               task_controller.tasklist.where((task) {
-                            return cat_name==task.category.toString()  ;
+                            return widget.cat_name==task.category.toString().split('.').last ;
                           }).toList();
 
                           return ListView.builder(

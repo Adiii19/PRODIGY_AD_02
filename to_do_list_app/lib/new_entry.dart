@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do_list_app/controllers/task_controller.dart';
 import 'package:to_do_list_app/models/model.dart';
+import 'package:to_do_list_app/main_screen.dart';
+
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
@@ -21,7 +23,8 @@ class _NewEntryState extends State<NewEntry> {
 
   TimeOfDay? selectedTime;
 
-  var enteredcategory = Category.Family;
+   
+   Category enteredcategory = Category.Family ;
 
   final _taskNameController = TextEditingController();
 
@@ -34,6 +37,7 @@ class _NewEntryState extends State<NewEntry> {
     // TODO: implement initState
     super.initState();
     if (widget.initialtask != null) {
+
       _taskNameController.text = widget.initialtask!.taskname;
       _taskDescriptionController.text = widget.initialtask!.description;
       selectedDate = widget.initialtask!.date;
@@ -71,7 +75,7 @@ class _NewEntryState extends State<NewEntry> {
         min: min,
         id: id!,
         hourcheck: hourcheck,
-        category: category);
+        category: enteredcategory.toString().split('.').last  );
 
         taskController.edittask(newtask);
 
@@ -257,8 +261,8 @@ class _NewEntryState extends State<NewEntry> {
                       )
                   ],
                   onChanged: (value) {
-                    enteredcategory = value!;
-                    taskController.category.value = value;
+                    enteredcategory = value! ;
+                    taskController.category.value = enteredcategory as String;
                   }),
             ),
             SizedBox(
@@ -279,11 +283,14 @@ class _NewEntryState extends State<NewEntry> {
                 taskController.hour?.value = selectedTime!.hour;
                 taskController.min?.value = selectedTime!.minute;
                 taskController.hourcheck?.value = selectedTime!.hour;
-                taskController.category.value = enteredcategory;
+                taskController.category.value = enteredcategory as String;
 
                 setState(() {
   taskController.task_adder();
-  Navigator.of(context).pop();
+  
+  Navigator.of(context).pop(
+     
+  );
 });
                 }
               },

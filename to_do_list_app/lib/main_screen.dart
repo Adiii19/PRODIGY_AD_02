@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:to_do_list_app/category_screen.dart';
 import 'package:to_do_list_app/controllers/initial_controller.dart';
 import 'package:to_do_list_app/controllers/task_controller.dart';
@@ -18,6 +19,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
       final TaskController task_controller=Get.put(TaskController());
+      final InitialController initialController = Get.put(InitialController());
 
   void showmodealsheet() {
     showModalBottomSheet(
@@ -32,6 +34,13 @@ class _MainScreenState extends State<MainScreen> {
       builder: (BuildContext context) => NewEntry(),
     );
   }
+
+ loadusername ()async{
+
+  SharedPreferences prefs=await SharedPreferences.getInstance();
+  initialController.name.value=prefs.getString('username')!;
+
+ }
 
   Future<void> loaditems()async{
 
@@ -74,17 +83,22 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+  }
   void initState() {
     // TODO: implement initState
     super.initState();
+    loadusername();
     loaditems();
+  
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
 
-    final InitialController initialController = Get.put(InitialController());
 
     return Scaffold(
       body: Container(

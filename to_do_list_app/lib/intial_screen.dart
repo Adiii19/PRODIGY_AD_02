@@ -3,8 +3,23 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'controllers/initial_controller.dart';
 import 'main_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class IntialScreen extends StatelessWidget {
+class IntialScreen extends StatefulWidget {
+  @override
+  State<IntialScreen> createState() => _IntialScreenState();
+}
+
+class _IntialScreenState extends State<IntialScreen> {
+
+
+
+  
+   
+
+ 
+
+
   @override
   Widget build(BuildContext context) {
     final TextEditingController _nameController = TextEditingController();
@@ -12,7 +27,13 @@ class IntialScreen extends StatelessWidget {
     final InitialController initcontroller = Get.put(InitialController());
     final FocusNode _focusNode = FocusNode();
 
-    
+    saveusername() async{
+      SharedPreferences prefs=await SharedPreferences.getInstance();
+      prefs.setString('username', _nameController.text);
+    }
+   
+
+ 
 
     // TODO: implement build
     return Scaffold(
@@ -140,11 +161,12 @@ class IntialScreen extends StatelessWidget {
                           onPressed: () {
                             
                             if (initcontroller.setter.value) {
-                                  initcontroller.name=_nameController.text.obs;
+                                  saveusername();
 
                              Get.to(MainScreen());
                             }else{
                               initcontroller.button_changer();
+                             
                             }
                           },
                           child: Text(

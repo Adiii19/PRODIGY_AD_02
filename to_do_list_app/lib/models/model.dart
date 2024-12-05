@@ -32,7 +32,7 @@ required this.category,
  int ?min;
  int ?hourcheck;
  String id;
- String? category;
+ String category;
 
 
 String get Formatteddate{

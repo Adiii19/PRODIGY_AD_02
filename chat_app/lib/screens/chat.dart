@@ -48,7 +48,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ,
                    icon: Icon(Icons.exit_to_app),color: Theme.of(context).colorScheme.primary,)
                 ],
-                title: Text("Flutter Chat"),
+                title: Text("WeChat"),
               ),
 
               body: Column(

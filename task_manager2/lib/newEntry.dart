@@ -128,7 +128,7 @@ class _NewEntryState extends ConsumerState<NewEntry> {
           'min': selectedTime!.minute ,
           'hourcheck': selectedTime!.hour ,
 
-          
+    
         }),
       );
 

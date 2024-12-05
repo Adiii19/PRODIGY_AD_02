@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
 import 'package:expense_tracker/widgets/chart/chart.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Expenses extends StatefulWidget {
   @override
@@ -95,9 +96,46 @@ class _ExpensesState extends State<Expenses> {
                 icon: Icon(Icons.add))
           ]),
       body: width<600?Column(
+
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+           Padding(
+            padding: const EdgeInsets.only(left: 25),
+            child: Text('This Week',style: GoogleFonts.lato(
+              color: Colors.black,
+              fontSize: 25
+            ),),
+          ),
           Chart(expenses:_registeredExpenses),
-          Expanded(child: maincontent),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text('Today\'s Expenses',style: GoogleFonts.lato(
+              color: Colors.black,
+              fontSize: 25
+            ),),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
+            child: Container(
+              height: MediaQuery.sizeOf(context).height*0.4,
+              width: MediaQuery.sizeOf(context).width*0.89,
+               decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 19, 68, 27),
+              Color.fromARGB(115, 255, 255, 255)
+            ],
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+                    ),
+                  ),
+              child: 
+             maincontent 
+            ),
+          ),
         ],
       ):
       Row(
@@ -105,7 +143,7 @@ class _ExpensesState extends State<Expenses> {
           Expanded(child: Chart(expenses:_registeredExpenses)),
           Expanded(child: maincontent),
         ],
-      ),
+      )
 
     );
   }

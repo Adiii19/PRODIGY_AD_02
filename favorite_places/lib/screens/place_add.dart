@@ -31,7 +31,7 @@ class _AddPlacesState extends ConsumerState<AddPlaces> {
                       return;
                 }
                 ref.read(UserPlacesProvider.notifier).
-                addPlace(enteredTitle,selectedimage,selectedlocation!);
+                addPlace(enteredTitle,selectedimage!,selectedlocation!);
 
                   Navigator.of(context).pop();
               }

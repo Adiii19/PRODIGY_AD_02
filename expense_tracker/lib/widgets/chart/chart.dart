@@ -1,5 +1,6 @@
+import 'package:expense_tracker/home_page.dart';
 import 'package:flutter/material.dart';
-
+import 'package:expense_tracker/barGraph/graph.dart';
 import 'package:expense_tracker/widgets/chart/chart_bar.dart';
 import 'package:expense_tracker/models/expense.dart';
 
@@ -52,44 +53,7 @@ class Chart extends StatelessWidget {
           end: Alignment.topCenter,
         ),
       ),
-      child: Column(
-        children: [
-          Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                for (final bucket in buckets) // alternative to map()
-                  ChartBar(
-                    fill: bucket.totalexpenses == 0
-                        ? 0
-                        : bucket.totalexpenses / maxTotalExpense,
-                  )
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: buckets
-                .map(
-                  (bucket) => Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 4),
-                      child: Icon(
-                        categoryIcons[bucket.category],
-                        color: isDarkMode
-                            ? Theme.of(context).colorScheme.secondary
-                            : Theme.of(context)
-                                .colorScheme
-                                .primary
-                                .withOpacity(0.7),
-                      ),
-                    ),
-                  ),
-                )
-                .toList(),
-          )
-        ],
-      ),
+      child: homePage()
     );
   }
 }

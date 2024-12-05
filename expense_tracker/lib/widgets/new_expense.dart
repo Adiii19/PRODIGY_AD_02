@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:expense_tracker/models/expense.dart';
 
 class NewExpense extends StatefulWidget {
@@ -33,7 +35,7 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
-  void _submitExpenseData() {
+  Future<void> _submitExpenseData() async {
     final enteredAmount = double.tryParse(_amountController
         .text); // tryParse('Hello') => null, tryParse('1.12') => 1.12
     final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
@@ -68,6 +70,28 @@ class _NewExpenseState extends State<NewExpense> {
       ),
     );
     Navigator.pop(context);
+
+        final expense = {
+        'userId': 'user1', // Replace with actual user ID
+        'amount': int.parse(_amountController.text),
+        'category': 'Groc',
+        'date': DateTime.now().toIso8601String(),
+        'description':'loooo',
+      };
+
+      try {
+  final response = await http.post(
+    Uri.parse('https://v1eczk9juj.execute-api.us-east-1.amazonaws.com/dev/expenses'),
+    headers: {'Content-Type': 'application/json'},
+    body: json.encode(expense),
+  
+  );
+  print(response);
+  print("DOEN++");
+} on Exception catch (e) {
+  print(e);
+}
+
   }
 
   @override

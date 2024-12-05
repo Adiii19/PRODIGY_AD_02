@@ -12,10 +12,8 @@ class ExpenseItem extends StatelessWidget
   Widget build(BuildContext context) {
     
     return
-   
-           Card(
-             
-              child: Padding(
+          Card(
+             child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 16,
@@ -28,14 +26,18 @@ class ExpenseItem extends StatelessWidget
                     SizedBox(height: 8),
                     Row(
                       children: [
-                        Text('Rs.${expense.amount.toStringAsFixed(2)}'),//amount
+                        Text('Rs.${expense.amount.toStringAsFixed(2)}',style: TextStyle(
+                          color: Colors.white
+                        ),),//amount
                           Spacer(),
                   
                     Row(
                       children: [
                         Icon(categoryIcons[expense.category]),  //category
                         SizedBox(width:4),
-                        Text(expense.FormattedDate)//data
+                        Text(expense.FormattedDate,style: TextStyle(
+                          color: Colors.white
+                        ),)//data
                       ],
                     ),
                    ] ),
